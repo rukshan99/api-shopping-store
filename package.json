@@ -21,7 +21,9 @@
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "stripe": "^8.145.0"
+    "nodemailer": "^6.6.0",
+    "stripe": "^8.145.0",
+    "twilio": "^3.61.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"

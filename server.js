@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const GenerateResponse = require('./payment/payment-gateway');
+const MailService = require('./service/email-service');
 
 const stripe = require('stripe')('sk_test_51IjoKtLpaVzr78MNZ9Kj71j93vGPFLNH9VfVqrVEVO3Rz9rPdSKwFT5GePztogeQ5jdURy4i1gM7Qt1thf1SLkK000iekpcyDF')
 
@@ -28,6 +29,7 @@ app.post('/pay', async (request, response) => {
       });
       // Send the response to the client
       response.send(GenerateResponse(intent));
+      MailService();
     } catch (e) {
       // Display error on client
       return response.send({ error: e.message });
