@@ -2,10 +2,15 @@ var express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
+require('dotenv').config({path: __dirname + '/.env'})
+
 const GenerateResponse = require('./payment/payment-gateway');
 const MailService = require('./service/email-service');
+const MessageService = require('./service/message-service');
 
-const stripe = require('stripe')('sk_test_51IjoKtLpaVzr78MNZ9Kj71j93vGPFLNH9VfVqrVEVO3Rz9rPdSKwFT5GePztogeQ5jdURy4i1gM7Qt1thf1SLkK000iekpcyDF')
+const STRIPE_SECRET_KEY = process.env['STRIPE_SECRET_KEY'];
+
+const stripe = require('stripe')(STRIPE_SECRET_KEY);
 
 app = express(),
 port = process.env.PORT || 4000;
@@ -30,6 +35,8 @@ app.post('/pay', async (request, response) => {
       // Send the response to the client
       response.send(GenerateResponse(intent));
       MailService();
+      MessageService(request.body.mobile);
+      console.log(request.body.mobile);
     } catch (e) {
       // Display error on client
       return response.send({ error: e.message });
