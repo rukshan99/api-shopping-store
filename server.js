@@ -1,6 +1,7 @@
 var express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose')
 
 require('dotenv').config({path: __dirname + '/.env'})
 
@@ -8,8 +9,10 @@ const GenerateResponse = require('./payment/payment-gateway');
 const MailService = require('./service/email-service');
 const MessageService = require('./service/message-service');
 
-const STRIPE_SECRET_KEY = process.env['STRIPE_SECRET_KEY'];
+const MONGO_DB_PASSWORD = process.env['MONGO_DB_PASSWORD'];
+const connectionString = `mongodb+srv://admin:${MONGO_DB_PASSWORD}@thegadgetstore.qy1us.mongodb.net/thegadgetstore?retryWrites=true&w=majority`;
 
+const STRIPE_SECRET_KEY = process.env['STRIPE_SECRET_KEY'];
 const stripe = require('stripe')(STRIPE_SECRET_KEY);
 
 app = express(),
@@ -46,6 +49,8 @@ app.post('/pay', async (request, response) => {
 app.get('/pay', (req, res) => {
     res.send('Payment Gateway.');
 });
+
+
 
 app.listen(port, () => {
     console.log('Server is listening on port ' + port + `\n http://localhost:${port}`);
