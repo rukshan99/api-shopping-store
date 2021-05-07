@@ -1,13 +1,33 @@
 const mongoose = require('mongoose')
 
 const paymentSchema = new mongoose.Schema({
+  pid: {
+    type: String,
+    required: [true, 'Payment ID is required']
+  },
+  uid: {
+    type: String,
+    required: [true, 'User ID is required']
+  },
   name: {
     type: String,
     required: [true, 'Name is required']
   },
   email: {
     type: String,
-    required: [true, 'E-mail date is required']
+    required: [true, 'E-mail is required']
+  },
+  amount: {
+    type: String,
+    required: [true, 'Amount is required']
+  },
+  paymentDate: {
+    type: String,
+    required: [true, 'Payment date is required']
+  },
+  mobile: {
+    type: String,
+    required: [true, 'Mobile number is required']
   },
   cardNo: {
     type: String,
@@ -23,4 +43,4 @@ const paymentSchema = new mongoose.Schema({
   }
 })
 
-module.exports = paymentSchema;
+module.exports = mongoose.model('Payment', paymentSchema);
