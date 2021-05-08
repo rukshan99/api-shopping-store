@@ -18,6 +18,7 @@ const getPayment = async(req, res) => {
 }
 
 const createPayment = async (req, res, next) => {
+    console.log('creating the payment');
     const errors = validationResult(req);
     if(!errors.isEmpty()) {
         console.log(errors);
@@ -25,6 +26,7 @@ const createPayment = async (req, res, next) => {
     }
 
     try {
+        console.log(req.body);
         // Create the PaymentIntent
         let intent = await stripe.paymentIntents.create({
           payment_method: req.body.payment_method_id,
@@ -44,19 +46,20 @@ const createPayment = async (req, res, next) => {
         return res.send({ error: e.message });
       }
 
-    const { name, email, amount, mobile, cardNo, expDate, cvc } = req.body;
+    //const { name, email, amount, mobile, cardNo, expDate, cvc } = req.body;
+    const { payment_method_id, name, email, amount, mobile } = req.body;
 
     const createdPayment = new Payment({
-        pid,
-        uid,
+        payment_method_id,
+        //uid,
         name,
         email,
         amount,
         paymentDate: new Date(),
-        mobile,
-        cardNo,
-        expDate,
-        cvc
+        mobile
+        //cardNo,
+        //expDate,
+        //cvc
     });
 
     // let user;
