@@ -2,26 +2,46 @@
 const mongoose = require('mongoose')
 
 const paymentSchema = new mongoose.Schema({
+  payment_method_id: {
+    type: String,
+    required: [true, 'Payment ID is required']
+  },
+  // uid: {
+  //   type: String,
+  //   required: [true, 'User ID is required']
+  // },
   name: {
     type: String,
     required: [true, 'Name is required']
   },
   email: {
     type: String,
-    required: [true, 'E-mail date is required']
+    required: [true, 'E-mail is required']
   },
-  cardNo: {
+  amount: {
     type: String,
-    required: [true, 'Card number is required']
+    required: [true, 'Amount is required']
   },
-  expDate: {
+  paymentDate: {
     type: String,
-    required: [true, 'Expiration date is required']
+    required: [true, 'Payment date is required']
   },
-  cvc: {
+  mobile: {
     type: String,
-    required: [true, 'CVC is required']
+    required: [true, 'Mobile number is required']
   }
+  // cardNo: {
+  //   type: String,
+  //   required: [true, 'Card number is required']
+  // },
+  // expDate: {
+  //   type: String,
+  //   required: [true, 'Expiration date is required']
+  // },
+  // cvc: {
+  //   type: String,
+  //   required: [true, 'CVC is required']
+  // }
 })
 
-module.exports = paymentSchema;
+module.exports = mongoose.model('Payment', paymentSchema);
