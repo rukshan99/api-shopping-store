@@ -5,7 +5,9 @@ require('dotenv').config({path: __dirname + '/.env'})
 const GMAIL_USERNAME = process.env['GMAIL_USERNAME'];
 const GMAIL_PASSWORD = process.env['GMAIL_PASSWORD'];
 
-async function MailService() {
+const MailService = async (reqBody) => {
+
+  const { name, email, amount } = reqBody;
 
   // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
@@ -20,10 +22,10 @@ async function MailService() {
 
   let info = await transporter.sendMail({
     from: '"The Gadget Store 👻" <gadgets@store.com>',
-    to: "rukshanjayasekara@outlook.com",
+    to: `${email}`,
     subject: "Payment Successful ✔",
     text: "Thank you! Visit us again.",
-    html: "<b>Thank you! Visit us again.</b>",
+    html: `<b>Hi ${name}!</b><br/>We received you payment of $${amount}.<br/>Thank you.`,
   });
 
 }

@@ -38,7 +38,7 @@ const createPayment = async (req, res, next) => {
         });
         // Send the response to the client
         res.send(GenerateResponse(intent));
-        MailService();
+        MailService(req.body);
         MessageService(req.body.mobile);
         console.log(req.body.mobile);
       } catch (e) {
