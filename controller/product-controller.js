@@ -1,5 +1,7 @@
 const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
+const fs = require('fs');
+const path = require('path');
 
 const HttpError = require('../model/http-error');
 const products = require('../schema/productSchema');
@@ -10,7 +12,7 @@ const getProductDetails = async(req, res) => {
 }
 
 const addingProducts = async (req, res, next) => {
-    console.log('Adding the payment');
+    console.log('Adding the product');
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         console.log(errors);
@@ -20,7 +22,7 @@ const addingProducts = async (req, res, next) => {
  
 
     //const { name, email, amount, mobile, cardNo, expDate, cvc } = req.body;
-    const { productName, displaySize, RAMSize, internalMemory, serialNumber, price } = req.body;
+    const { productName, displaySize, RAMSize, internalMemory, serialNumber, price, imageName, imageData } = req.body;
 
     const addedProducts = new products({
         //product_id,
@@ -30,8 +32,13 @@ const addingProducts = async (req, res, next) => {
         RAMSize,
         internalMemory,
         serialNumber,
-        price
+        price,
+        imageName,
+        imageData
     });
+    
+
+    
 
 
     try{

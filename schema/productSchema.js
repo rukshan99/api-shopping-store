@@ -24,11 +24,16 @@ const productSchema = new mongoose.Schema({
   price: {
     type: String,
     required: [true, 'Price is required']
-  }
-//   image: {
-//     type: String,
-//     required: [true]
-//   }
+  },
+  imageName: {
+    type: String,
+    default: "none",
+    required: true
+},
+imageData: {
+    type: String,
+    required: true
+}
 })
 
 
