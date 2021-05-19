@@ -27,7 +27,8 @@
     "mongoose": "^5.12.7",
     "nodemailer": "^6.6.0",
     "stripe": "^8.145.0",
-    "twilio": "^3.61.0"
+    "twilio": "^3.61.0",
+    "uuidv4": "^6.2.8"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
