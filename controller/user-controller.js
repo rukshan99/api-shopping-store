@@ -1,8 +1,9 @@
 const { validationResult } = require('express-validator');
 const mongoose = require('mongoose');
-
 const HttpError = require('../model/http-error');
-const products = require('../schema/userSchema');
+const Register = require('../schema/userSchema');
+const users = require('../schema/userSchema');
+
 
 const getUserDetails = async(req, res) => {
     res.send('User Details.');
@@ -20,13 +21,13 @@ const addingUsers = async (req, res, next) => {
  
 
     //const { name, email, amount, mobile, cardNo, expDate, cvc } = req.body;
-    const { userName, Email, password } = req.body;
+    const { username, email, password } = req.body;
 
     const addUser = new users({
         //product_id,
         //uid,
-        userName,
-        Email,
+        username,
+        email,
         password
     });
 
@@ -39,7 +40,7 @@ const addingUsers = async (req, res, next) => {
         await session.commitTransaction();
     } catch(err) {
         const error = new HttpError(
-            'Error occured while saving products details. Please try again.',
+            'Error occured while saving user details. Please try again.',
             500
         );
         return next(error);
@@ -48,5 +49,40 @@ const addingUsers = async (req, res, next) => {
     res.status(201).json({users: addingUsers});
 };
 
+const userlogin = async(req,res) => {
+    try {
+
+        const email = req.body.email;
+        const password = req.body.password;
+
+        // console.log(`${email} and password is ${password}`)
+        if(email == "admin@gdc.com" && password == "admin@123"){
+            console.log("admin login")
+            res.writeHead(302, {
+                Location: 'http://localhost:3000/payment'
+            });
+            res.end();
+            
+
+        }
+
+        const useremail = await Register.findOne({email : email});
+        
+
+        if(useremail.password === password){
+            console.log("matching");
+            
+        }else{
+           console.log("The password is incorrect")
+           alert("The product has been added to cart.")
+        }
+
+
+    } catch (error) {
+        res.status(400).send("Invalid Email")
+    }
+}
+
 exports.addingUsers = addingUsers;
 exports.getUserDetails = getUserDetails;
+exports.userlogin = userlogin;
