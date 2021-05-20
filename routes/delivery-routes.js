@@ -4,22 +4,12 @@ const { check } = require('express-validator');
 
 const deliveryControllers = require('../controller/delivery-controller');
 
-router.post('/delivery', 
-[
-    // check('name').not().isEmpty(), 
-    // check('email').not().isEmpty(),
-    // //check('amount').not().isEmpty(),
-    // check('mobile').not().isEmpty(),
-    // check('cardNo').not().isEmpty(),
-    // //check('cvc').not().isEmpty(),
-], 
-deliveryControllers.createDelivery);
 
 router.get('/delivery', deliveryControllers.getDeliveryDetails);
 
 router.route('/').get(function(req, res) {
  
-  res.json("Hi From Sachini");
+  res.json("Delivery service");
 
 });
 
