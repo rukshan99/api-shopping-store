@@ -13,9 +13,13 @@ const deliverySchema = new mongoose.Schema({
     type: String,
     required: [true, 'Phone number is required']
   },
-  address: {
+  addressLine1: {
     type: String,
-    required: [true, 'Address date is required']
+    required: [true, 'Address Line 01 is required']
+  },
+  addressLine2: {
+    type: String,
+    required: [true, 'Address Line 02 is required']
   },
   city: {
     type: String,
@@ -24,6 +28,14 @@ const deliverySchema = new mongoose.Schema({
   zip: {
     type: String,
     required: [true, 'Zip code is required']
+  },
+  State: {
+    type: String,
+    required: [true, 'State code is required']
+  },
+  CompanyName: {
+    type: String,
+    required: [true, 'Company Name is required']
   },
   note: {
     type: String,

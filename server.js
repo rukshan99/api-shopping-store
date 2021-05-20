@@ -7,6 +7,7 @@ require('dotenv').config({path: __dirname + '/.env'})
 
 const PaymentRoutes = require('./routes/payment-routes');
 const ProductRoutes = require('./routes/product-routes');
+const DeliveryRoutes = require('./routes/delivery-routes');
 
 const MONGO_DB_PASSWORD = process.env['MONGO_DB_PASSWORD'];
 const connectionString = `mongodb+srv://admin:${MONGO_DB_PASSWORD}@thegadgetstore.qy1us.mongodb.net/thegadgetstore?retryWrites=true&w=majority`;
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', PaymentRoutes);
 app.use('/', ProductRoutes);
+app.use('/delivery', DeliveryRoutes);
 
 mongoose
 .connect(connectionString)
