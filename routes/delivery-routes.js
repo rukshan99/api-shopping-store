@@ -2,11 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
 
-const deliveryControllers = require('../controller/delivery-controller');
-
-
-router.get('/delivery', deliveryControllers.getDeliveryDetails);
-
 router.route('/').get(function(req, res) {
  
   res.json("Delivery service");
