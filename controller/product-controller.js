@@ -15,13 +15,13 @@ exports.findAll = (req, res) => {
     products.find(condition)
       .then(data => {
         if (!data)
-          res.status(404).send({ message: "Not found Tutorial with id " + id });
+          res.status(404).send({ message: "Not found Product with id " + id });
         else res.send(data);
       })
       .catch(err => {
         res
           .status(500)
-          .send({ message: "Error retrieving Tutorial with id=" + id });
+          .send({ message: "Error retrieving Product with id=" + id });
       });
   
 };
@@ -32,13 +32,13 @@ exports.findOne = (req, res) => {
   products.findById(id)
     .then(data => {
       if (!data)
-        res.status(404).send({ message: "Not found Tutorial with id " + id });
+        res.status(404).send({ message: "Not found Product with id " + id });
       else res.send(data);
     })
     .catch(err => {
       res
         .status(500)
-        .send({ message: "Error retrieving Tutorial with id=" + id });
+        .send({ message: "Error retrieving Product with id=" + id });
     });
 };
 
@@ -52,19 +52,19 @@ exports.update = (req, res) => {
 };
 
 
-const id = req.params.id; //'60a56c20748fb33970ad5a1d'
+const id = req.params.id; 
 
 products.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found!`
+          message: `Cannot update Product with id=${id}. Maybe Product was not found!`
         });
-      } else res.send({ message: "Tutorial was updated successfully." });
+      } else res.send({ message: "Product was updated successfully." });
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Tutorial with id=" + id
+        message: "Error updating Product with id=" + id
       });
     });
 };
@@ -72,22 +72,21 @@ products.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
 
 exports.delete = (req, res) => {
   const id = req.params.id;
-
   products.findByIdAndRemove(id)
     .then(data => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`
+          message: `Cannot delete Product with id=${id}. Maybe Product was not found!`
         });
       } else {
         res.send({
-          message: "Tutorial was deleted successfully!"
+          message: "Product was deleted successfully!"
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Tutorial with id=" + id
+        message: "Could not delete Product with id=" + id
       });
     });
 };
@@ -104,12 +103,11 @@ const addingProducts = async (req, res, next) => {
 
  
 
-    //const { name, email, amount, mobile, cardNo, expDate, cvc } = req.body;
+  
     const { productName, displaySize, RAMSize, internalMemory, brand, serialNumber, price, imageName, imageData } = req.body;
 
     const addedProducts = new products({
-        //product_id,
-        //uid,
+        
         productName,
         displaySize,
         RAMSize,
@@ -127,7 +125,7 @@ const addingProducts = async (req, res, next) => {
 
 
     try{
-        //console.log(addedProducts);
+        
         const session = await mongoose.startSession();
         session.startTransaction();
         await addedProducts.save({ session: session });
