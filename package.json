@@ -25,10 +25,11 @@
     "express-validator": "^6.10.1",
     "mongodb": "^3.6.6",
     "mongoose": "^5.12.7",
-    "multer": "^1.4.2",
+    "node-fetch": "^2.6.1",
     "nodemailer": "^6.6.0",
     "stripe": "^8.145.0",
-    "twilio": "^3.61.0"
+    "twilio": "^3.61.0",
+    "uuidv4": "^6.2.8"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
