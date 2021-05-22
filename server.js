@@ -7,6 +7,7 @@ require('dotenv').config({path: __dirname + '/.env'})
 
 const PaymentRoutes = require('./routes/payment-routes');
 const ProductRoutes = require('./routes/product-routes');
+const UserRoutes = require('./routes/user-routes');
 const DeliveryRoutes = require('./routes/delivery-routes');
 
 const MONGO_DB_PASSWORD = process.env['MONGO_DB_PASSWORD'];
@@ -23,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', PaymentRoutes);
 app.use('/', ProductRoutes);
+app.use('/', UserRoutes);
 app.use('/delivery', DeliveryRoutes);
 
 mongoose
