@@ -16,6 +16,10 @@ router.post('/form', upload.single('image'),
 ], 
 ProductControllers.addingProducts);
 
-router.get('/products', ProductControllers.getProductDetails);
+router.get('/product', ProductControllers.findAll);
+router.get('/about', ProductControllers.findAll);
+router.get('/product/:id', ProductControllers.findOne);
+router.put('/product/:id', ProductControllers.update);
+router.delete("product/:id", ProductControllers.delete);
 
 module.exports = router;
