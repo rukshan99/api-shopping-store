@@ -17,6 +17,10 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Internal memory is required']
   },
+  brand: {
+    type: String,
+    required: [true, 'brand is required']
+  },
   serialNumber: {
     type: String,
     required: [true, 'Serial Number is required']
@@ -24,11 +28,20 @@ const productSchema = new mongoose.Schema({
   price: {
     type: String,
     required: [true, 'Price is required']
-  }
-//   image: {
-//     type: String,
-//     required: [true]
-//   }
+  },
+  imageName: {
+    type: String,
+    default: "none",
+    required: true
+},
+imageData: {
+    type: String,
+    required: true
+},
+count: {
+  type: Number,
+  required: true
+}
 })
 
 
