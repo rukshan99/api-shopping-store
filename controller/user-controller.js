@@ -18,14 +18,9 @@ const addingUsers = async (req, res, next) => {
         return next(new HttpError('Invalid inputs! Please check again.', 422));
     }
 
-
-
-    //const { name, email, amount, mobile, cardNo, expDate, cvc } = req.body;
     const { username, email, password } = req.body;
 
     const addUser = new users({
-        //product_id,
-        //uid,
         username,
         email,
         password
@@ -33,7 +28,6 @@ const addingUsers = async (req, res, next) => {
 
 
     try {
-        //console.log(addedProducts);
         const session = await mongoose.startSession();
         session.startTransaction();
         await addUser.save({ session: session });
@@ -65,12 +59,9 @@ const userlogin = async (req, res) => {
 
         const useremail = await Register.findOne({ email: email });
 
-
         if (useremail.password === password) {
             console.log("matching");
-            res.send("Pass");
-
-
+            res.send({result :"Pass",username:useremail.username});
         } else {
             console.log("The password is incorrect")
             res.send("Fail")
