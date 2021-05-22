@@ -9,9 +9,8 @@ const MailService = async (reqBody) => {
 
   const { name, email, amount } = reqBody;
 
-  // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",//"smtp.ethereal.email",
+    host: "smtp.gmail.com",
     port: 587,
     secure: false,
     auth: {

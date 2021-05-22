@@ -6,8 +6,6 @@ const path = require('path');
 const HttpError = require('../model/http-error');
 const products = require('../schema/productSchema');
 
-
-
 exports.findAll = (req, res) => {
 
   const brand = req.query.brand;
@@ -101,9 +99,6 @@ const addingProducts = async (req, res, next) => {
         return next(new HttpError('Invalid inputs! Please check again.', 422));
     }
 
- 
-
-  
     const { productName, displaySize, RAMSize, internalMemory, brand, serialNumber, price, imageName, imageData } = req.body;
 
     const addedProducts = new products({
@@ -119,10 +114,6 @@ const addingProducts = async (req, res, next) => {
         imageData,
         count: 1
     });
-    
-
-    
-
 
     try{
         
