@@ -6,10 +6,6 @@ const paymentSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Payment ID is required']
   },
-  // uid: {
-  //   type: String,
-  //   required: [true, 'User ID is required']
-  // },
   name: {
     type: String,
     required: [true, 'Name is required']
@@ -30,18 +26,7 @@ const paymentSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Mobile number is required']
   }
-  // cardNo: {
-  //   type: String,
-  //   required: [true, 'Card number is required']
-  // },
-  // expDate: {
-  //   type: String,
-  //   required: [true, 'Expiration date is required']
-  // },
-  // cvc: {
-  //   type: String,
-  //   required: [true, 'CVC is required']
-  // }
+
 })
 
 module.exports = mongoose.model('Payment', paymentSchema);

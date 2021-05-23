@@ -56,7 +56,6 @@ const userlogin = async (req, res) => {
         const email = req.body.email;
         const password = req.body.password;
 
-        // console.log(`${email} and password is ${password}`)
         if (email == "admin@gdc.com" && password == "admin@123") {
             console.log("admin login")
             res.send("Admin");
