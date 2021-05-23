@@ -20,6 +20,11 @@ const addingUsers = async (req, res, next) => {
 
     const { username, email, password } = req.body;
 
+    const mail = req.body.email;
+    const useremail = await Register.findOne({ email: mail });
+
+    if(!useremail){
+
     const addUser = new users({
         username,
         email,
@@ -41,6 +46,8 @@ const addingUsers = async (req, res, next) => {
     }
 
     res.status(201).json({ users: addingUsers });
+}
+res.send("fail");
 };
 
 const userlogin = async (req, res) => {
